@@ -1,30 +1,104 @@
+// Global Varibles
+let peoplePage = 1;
+let planetPage = 1;
+let isLoading = false;
 
-fetch('https://www.swapi.tech/api/people')
-    .then(response =>{
-        if (response.ok) {
-            return response.json();
-        }
-        else{
-            throw new Error('Network response was not ok');
-        }
-    })
+// DOM selectors
+const peopleContainer = document.querySelector('.container_people');
+const planetContainer = document.querySelector('.container_planets');
+const peopleBtn = document.querySelector("#btn-people");
+const planetBtn = document.querySelector("#btn-planets");
 
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
+// fetch functions
+async function fetchPeople(page = 1) {
+    const res = await fetch(`https://www.swapi.tech/api/people?page=${page}&limit=10`);
+    const data = await res.json();
+    console.log(data);
+    renderPeople(data.results);
+}
+async function fetchPlanets(page = 1) {
+    const res = await fetch(`https://www.swapi.tech/api/planets?page=${page}&limit=10`);
+    const data = await res.json();
+    console.log(data);
+    renderPlanets(data.results);
+}
 
+// Render Functions
+function renderPeople(people) {
+    people.forEach(async (person) => {
+      const res = await fetch(person.url);
+      const data = await res.json();
+      const p = data.result.properties;
+  
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h3>${p.name}</h3>
+        <p>Birth Year: ${p.birth_year}</p>
+        <p>Gender: ${p.gender}</p>
+      `;
+    //   <img src="${getCharacterImage(p.name)}" alt="${p.name}" />
+      peopleContainer.appendChild(card);
+    });
+  }
+  
+  function renderPlanets(planets) {
+    planets.forEach(async (planet) => {
+      const res = await fetch(planet.url);
+      const data = await res.json();
+      const p = data.result.properties;
+  
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h3>${p.name}</h3>
+        <p>Climate: ${p.climate}</p>
+        <p>Population: ${p.population}</p>
+      `;
+      planetContainer.appendChild(card);
+    });
+  }
 
-    fetch('https://www.swapi.tech/api/planets/1')
-    .then(response =>{
-        if (response.ok) {
-           return response.json();
-        }
-        else{
-            throw new Error('Network response was not ok');
-        }
-    })
+// Image Utility (Placeholder or hardcoded map)
+function getCharacterImage(name) {
+    const imgMap = {
+      "Luke Skywalker": "images/luke.png",
+      "Leia Organa": "images/leia.png",
+      // ... add more as needed
+    };
+    return imgMap[name] || "images/placeholder.png";
+}
 
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
+// Event Listners
+peopleBtn.addEventListener("click", () => {
+    peopleContainer.innerHTML = "";
+    planetContainer.innerHTML = "";
+    peoplePage = 1;
+    fetchPeople(peoplePage);
+});
 
-    
-     
+planetBtn.addEventListener("click", () => {
+    peopleContainer.innerHTML = ""; 
+    planetContainer.innerHTML = "";
+    planetPage = 1;
+    fetchPlanets(planetPage);
+});
+
+  
+window.addEventListener("scroll", () => {
+  const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
+
+  if (nearBottom && !isLoading) {
+    isLoading = true; // lock so we don't fetch again while loading
+
+    if (peopleContainer.style.display !== "none") {
+      fetchPeople(++peoplePage).finally(() => {
+        isLoading = false;
+      });
+    } else {
+      fetchPlanets(++planetPage).finally(() => {
+        isLoading = false;
+      });
+    }
+  }
+});
