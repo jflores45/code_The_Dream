@@ -1,0 +1,82 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.main-page{
+    /* background: #8A0011; */
+    background: linear-gradient(to right, #000000, #450009, #8A0011, #450009, #000000);
+    height: 850px;
+    color: white;
+    display: flex;
+}
+.landing{
+    display: flex;
+    position: relative;
+    padding-left: 40px;
+    /* background-color: aquamarine; */
+}
+.landing-1{
+    /* background-color: aquamarine; */
+    width: 300px;
+    padding: 40px;
+    position: relative;
+    z-index: 1;
+    /* transform: rotate(-5deg); */
+    /* top: 50px; */
+    left: 20px;
+}
+.landing-1 h1{
+    font-size: 100px;
+    width: 30px;
+}
+.landing-2{
+    /* display: flex;
+    align-items: flex-end;
+    justify-content: center; */
+    position: absolute;
+    left: 50px;
+    top: 200px;
+    z-index: 2;
+    /* transform: rotate(5deg); */
+    /* background-color:aqua; */
+}
+.landing-2 img{
+    width: 950px;
+    height: 650px;
+    /* background-color: bisque; */
+}
+.nav-bar{
+    display: flex;
+    /* background-color: aqua; */
+    /* align-items: left; */
+    /* justify-content: right; */
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 80px 0px 0px;
+    width: 150px;
+    height: 800px;
+    gap: 250px;
+}
+.nav-bar img{
+    height: 100px;
+    width: 100px;
+}
+.carousel{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 40px;
+}
+.circle{
+    background-color: grey;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.circle:hover{
+    background-color: rgb(92, 88, 88);
+}
+
+.controls{
+    /* background: #8A0011; */
+}
