@@ -12,8 +12,8 @@ body{
 .landing{
     display: flex;
     position: relative;
-    padding-left: 40px;
-    /* background-color: aquamarine; */
+    padding: 40px;
+    /* background-color: aqua; */
 }
 .landing-1{
     /* background-color: aquamarine; */
@@ -28,6 +28,13 @@ body{
 .landing-1 h1{
     font-size: 100px;
     width: 30px;
+    padding: 0px;
+    background: blue;
+}
+.landing-1 p{
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 30px;
+    
 }
 .landing-2{
     /* display: flex;
@@ -48,11 +55,12 @@ body{
 .nav-bar{
     display: flex;
     /* background-color: aqua; */
+    margin-left: auto;
     /* align-items: left; */
     /* justify-content: right; */
     flex-direction: column;
     align-items: center;
-    padding: 40px 80px 0px 0px;
+    padding: 40px 40px 0px 0px;
     width: 150px;
     height: 800px;
     gap: 250px;
@@ -74,9 +82,13 @@ body{
     border-radius: 50%;
 }
 .circle:hover{
-    background-color: rgb(92, 88, 88);
+    background-color: rgb(44, 41, 41);
 }
 
-.controls{
-    /* background: #8A0011; */
+/* RESULT PAGE */
+
+.result-page{
+    padding: 100px;
+    color: white;
+    background: linear-gradient(to right, #000000, #450009, #8A0011, #450009, #000000);
 }
