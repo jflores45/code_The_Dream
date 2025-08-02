@@ -24,6 +24,16 @@ async function fetchPlanets(page = 1) {
 }
 
 // Render Functions
+function getCharacterImage(name) {
+    const imgMap = {
+      "Luke Skywalker": "/images/luke.png",
+      "Leia Organa": "/images/leia.png",
+      "Han Solo": "/images/han.png",
+      "Darth Vader": "/images/darth_vader.png",
+    };
+    return imgMap[name] || "images/placeholder.png";
+}
+
 function renderPeople(people) {
     people.forEach(async (person) => {
       const res = await fetch(person.url);
@@ -32,41 +42,45 @@ function renderPeople(people) {
   
       const card = document.createElement("div");
       card.className = "card";
+      card,style.backgroundImage = `url(${getCharacterImage(p.name)})`;
+      card.style.backgroundSize = "cover";
+      card.style.backgroundPosition = "center";
       card.innerHTML = `
         <h3>${p.name}</h3>
         <p>Birth Year: ${p.birth_year}</p>
         <p>Gender: ${p.gender}</p>
       `;
-    //   <img src="${getCharacterImage(p.name)}" alt="${p.name}" />
       peopleContainer.appendChild(card);
     });
   }
   
-  function renderPlanets(planets) {
-    planets.forEach(async (planet) => {
-      const res = await fetch(planet.url);
-      const data = await res.json();
-      const p = data.result.properties;
-  
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <h3>${p.name}</h3>
-        <p>Climate: ${p.climate}</p>
-        <p>Population: ${p.population}</p>
-      `;
-      planetContainer.appendChild(card);
-    });
-  }
+  function getPlanetImage(name) {
+  const imgMap = {
+    "Tatooine": "images/tatooine.png",
+    "Alderaan": "images/alderaan.png",
+    // ... add more as needed
+  };
+  return imgMap[name] || "images/planet_placeholder.png";
+}
 
-// Image Utility (Placeholder or hardcoded map)
-function getCharacterImage(name) {
-    const imgMap = {
-      "Luke Skywalker": "images/luke.png",
-      "Leia Organa": "images/leia.png",
-      // ... add more as needed
-    };
-    return imgMap[name] || "images/placeholder.png";
+function renderPlanets(planets) {
+  planets.forEach(async (planet) => {
+    const res = await fetch(planet.url);
+    const data = await res.json();
+    const p = data.result.properties;
+
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.backgroundImage = `url('${getPlanetImage(p.name)}')`;
+    card.style.backgroundSize = "cover";
+    card.style.backgroundPosition = "center";
+    card.innerHTML = `
+      <h3>${p.name}</h3>
+      <p>Climate: ${p.climate}</p>
+      <p>Population: ${p.population}</p>
+    `;
+    planetContainer.appendChild(card);
+  });
 }
 
 // Event Listners
