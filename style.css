@@ -3,32 +3,37 @@ body{
     padding: 0px;
 }
 .main-page{
-    /* background: #8A0011; */
     background: linear-gradient(to right, #000000, #450009, #8A0011, #450009, #000000);
-    height: 850px;
+    /* height: 850px; */
+    height: 100vh;
+    width: 100vw;
     color: white;
     display: flex;
+    flex-direction: row;
+    overflow: hidden;
 }
 .landing{
-    display: flex;
     position: relative;
-    /* justify-content: center; */
-    justify-content: flex-start;
+    display: flex;
+    justify-content: space-between;
     align-items: flex-start;
     padding: 40px;
-    /* background-color: aqua; */
-    /* gap:-200px; */
+    flex: 1;
 }
 .landing-1{
-    /* background-color: aquamarine; */
-    width: 500px;
+    width: 40vw;
     padding: 40px;
     position: relative;
     z-index: 1;
-    /* transform: rotate(-5deg); */
-    /* top: 50px; */
     left: 60px;
-    margin-top: -20px;
+    margin-top: -60px;
+}
+#title-landing{
+    width: 300px;
+}
+
+#text-landing{
+   width: 600px;
 }
 @font-face {
     font-family: 'Star Jedi';
@@ -39,44 +44,36 @@ body{
 .landing-1 h1{
     font-family: 'Star Jedi', Arial, Helvetica, sans-serif;
     font-size: 120px;
-    /* width: 30px; */
+    /* font-size: 80px; */
     padding: 0px;
-    /* background: blue; */
-    line-height: 100px;
+    line-height: 120px;
 }
 .landing-1 p{
     font-family: Arial, Helvetica, sans-serif;
     line-height: 30px;
-    
 }
 .landing-2{
+    flex: 1;
     display: flex;
-    align-items: center;
     justify-content: center;
-    /* left: 50px;
-    top: 200px; */
-    /* z-index: 2; */
-    /* transform: rotate(5deg); */
-    /* background-color:aqua; */
-    /* max-width: 950px; */
-    /* margin-left: 40px; */
+    align-items: center;
+    position: absolute;
+    top: 200px;
+    z-index: 2;
+    right: 100px;
 }
-.landing-2 img{
-    width: 950px;
-    height: 650px;
+.landing-2 img {
+    width: 1400px;
+    /* width: 90vw;
+    height: 50hv; */
+    max-width: none;
     object-fit: contain;
 }
 .nav-bar{
     display: flex;
-    /* background-color: aqua; */
-    /* margin-left: auto; */
-    /* align-items: left; */
-    /* justify-content: right; */
     flex-direction: column;
     align-items: center;
-    padding: 40px 100px 0px 0px;
-    width: 150px;
-    height: 800px;
+    padding: 40px 60px 0px 0px;
     gap: 250px;
 }
 .nav-bar img{
@@ -116,7 +113,6 @@ body{
 }
 .controls button{
     padding: 20px 30px;
-    /* background-color: #695F60; */
     background-color: rgb(105, 95, 95, 0.35);
     color: white;
     border: none;
@@ -124,17 +120,24 @@ body{
     cursor: pointer;
 }
 .controls button:hover{
-    background-color: rgb(105, 95, 95, 0.55);
+    background-color: rgba(69, 64, 64, 0.55);
 }
 .container_people, 
 .container_planets {
     display: flex;
     flex-wrap: wrap;
-    /* flex-direction: row; */
     gap: 40px;
     justify-content: center;
 }
+.card-details{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
 .card {
+    position: relative;
     width: 300px;
     height: 400px;
     background-color: #000000;
@@ -144,3 +147,60 @@ body{
     flex-direction: column;
     justify-content: space-between;
 }
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(115, 106, 106, 0) 48%,
+        rgba(24, 24, 24, 0.9) 73%,
+        rgba(1, 0, 0, 0.9) 90%
+    );
+    opacity: 0.9;
+    pointer-events: auto;
+    border-radius: 6px;
+}
+.overlay h3 {
+    font-size: 1.5rem;
+    padding: 20px 0px 0px 20px;
+    margin-bottom: 10px;
+}
+.card:hover .overlay {
+    background: linear-gradient(
+        to bottom,
+        rgba(115, 106, 106, 0) 48%,
+        rgba(24, 24, 24, 0.95) 73%,  /* slightly darker */
+        rgba(1, 0, 0, 1) 90%         /* fully darker */
+    );
+  }
+  
+.details-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0px 30px 0px 30px;
+}
+.details-row p {
+    margin: 0;
+}
+.btn_style{
+    display: flex;
+    justify-content: center;
+}
+.see-more {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+.see-more:hover {
+    transform: translateY(-5px) scale(1.05); /* move up & enlarge */
+    color: #ffd700; /* optional highlight */
+  }
