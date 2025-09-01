@@ -27,7 +27,7 @@ Follow these steps to run the project locally:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/star-wars-compendium.git
+git clone https://github.com/YOUR_USERNAME/Code_The_Dream.git
 ```
 
 2. Open the Project
