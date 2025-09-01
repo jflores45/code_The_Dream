@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    
+    
+    <div class="main-page">
+        <div class="landing">
+            <div class="landing-1">
+                <div id="title-landing"><h1>STAR WARS</h1></div>
+                <div id="text-landing"><p>Lorem ipsum dolor sit amet. Ea laborum dolor quo omnis incidunt cum nihil voluptas eum voluptas ipsum sit iure omnis aut exercitationem officiis? Ut tempore recusandae vel aperiam accusantium et atque galisum sed rerum enim est ipsam voluptatum eos dolores officiis ex soluta tempore.</p></div>
+            </div>
+             <!-- have a new image character show on page refresh  -->
+             <!-- jump into hyper space -->
+            <div class="landing-2">
+                <img src="images/Dvader.png"/>
+            </div>
+        </div>
+
+        <!-- disney logo -->
+        <div class="nav-bar">
+            <img src="images/disney_logo.png"/>
+
+            <!-- <div class="carousel">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div> -->
+        </div>
+        
+    </div>
+    <div class="gradient-overlay"></div>
+    <audio id="transition-audio" src="/code_The_Dream/voice-of-darth-vader.mp3" preload="auto"></audio>
+
+    <div class="e-page">
+    </div>
+
+
+    <script src="main.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        let audioPlayed = false; 
+
+        ScrollTrigger.create({
+        trigger: ".main-page",
+        start: "center center",
+        once: true, 
+        onEnter: () => {
+            const overlay = document.querySelector(".gradient-overlay");
+            const audio = document.querySelector("#transition-audio");
+
+            // Fade in overlay immediately
+            gsap.to(overlay, {
+            opacity: 1,
+            duration: 1.5,
+            delay: 1.5,
+            ease: "power2.out"
+            });
+
+            if (audio && !audioPlayed) {
+            audioPlayed = true;
+            audio.currentTime = 0;
+            audio.play().then(() => {
+                audio.onended = () => {
+                window.location.href = "result_page.html";
+                gsap.to(overlay, {
+                    opacity: 0,
+                    duration: 9,
+                    ease: "power2.out",
+                    onUpdate: () => {
+                    const progress = gsap.getProperty(overlay, "opacity");
+                    overlay.style.transform = `scale(${1 + (0.1 * (1 - progress))})`;
+                    }
+                });
+                };
+            }).catch(err => console.log("Audio play failed:", err));
+            }
+        }
+        });
+
+    </script>
+
+
+</body>
+</html>
