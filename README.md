@@ -19,16 +19,16 @@ Follow these steps to run the project locally:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/star-wars-compendium.git
+git clone https://github.com/YOUR_USERNAME/Code_The_Dream.git
 ```
 
-2. Open the Project
+### 2. Open the Project
 
 Open main_page.html in your browser.
 
 No backend setup is required; all data comes from SWAPI.
 
-3. Navigate
+### 3. Navigate
 
 Use the "People" and "Planets" buttons to switch between categories.
 
@@ -36,12 +36,12 @@ Click "See More" on any card to expand additional details.
 
 Click "See Less" (if implemented) to collapse the card details.
 
-Technologies Used
+## Technologies Used
 
-HTML
+- HTML
 
-CSS (Flexbox & Grid)
+- CSS (Flexbox & Grid)
 
-JavaScript (Fetch API, DOM manipulation)
+- JavaScript (Fetch API, DOM manipulation)
 
-SWAPI
+- SWAPI
